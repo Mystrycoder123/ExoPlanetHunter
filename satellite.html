@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoPlanetHunter</title>
+    <link rel="icon" type="image/x-icon" href="logo .png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #0C1016;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: white;
+            color: black;
+            border-radius: 50px;
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('space-background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero a {
+            padding: 15px 30px;
+            background-color: #4aa9e4;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .hero a:hover {
+            background-color: #1352d1;
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        .content {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        /* Satellite Section */
+        .satellite-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #ff9800;
+        }
+
+        .satellites {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .satellite-card {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .satellite-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .satellite-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ff9800;
+        }
+
+        .satellite-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .satellite-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.3s;
+        }
+
+        .satellite-card a:hover {
+            background-color: #e68a00;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0C1016;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#satellites">Satellites</a></li>
+            <li><a href="data.html">Data</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <h1>Exoplanet Exploration Satellites</h1>
+        <p>Explore the Satellites that Help Unveil the Mysteries of Exoplanets</p>
+        <a href="#satellites">Learn More</a>
+    </div>
+
+    <!-- Satellite Section -->
+    <section class="satellite-section" id="satellites">
+        <div class="content">
+            <h2>Satellites in Exoplanet Exploration</h2>
+            <div class="satellites">
+                <!-- Satellite 1: Kepler -->
+                <div class="satellite-card">
+                    <h3>Kepler Space Telescope</h3>
+                    <p>Launched in 2009, Kepler discovered thousands of exoplanets, revolutionizing the search for Earth-like planets.</p>
+                    <a href="https://www.nasa.gov/mission_pages/kepler/main/index.html" target="_blank">View 3D Model</a>
+                </div>
+                <!-- Satellite 2: TESS -->
+                <div class="satellite-card">
+                    <h3>Transiting Exoplanet Survey Satellite (TESS)</h3>
+                    <p>TESS, launched in 2018, scans nearly the entire sky, discovering planets orbiting bright stars close to Earth.</p>
+                    <a href="https://exoplanets.nasa.gov/resources/2217/tess-3d-model/" target="_blank">View 3D Model</a>
+                </div>
+                <!-- Satellite 3: James Webb -->
+                <div class="satellite-card">
+                    <h3>James Webb Space Telescope</h3>
+                    <p>Launched in 2021, Webb aims to explore the atmospheres of distant exoplanets and study galaxies far beyond our reach.</p>
+                    <a href="https://webb.nasa.gov/content/observatory/3dModel.html" target="_blank">View 3D Model</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Exoplanet Exploration Initiative. Powered by NASA</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoPlanetHunter</title>
+    <link rel="icon" type="image/x-icon" href="logo .png">
+    
+    <style>
+        /* General body and layout styles */
+        body {
+            display: flex;
+            align-items: flex-start; /* Align items to the start */
+            justify-content: center;
+            min-height: 100vh; /* Minimum height for full screen */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Optional: Black background for space effect */
+            color: #fff; /* Text color white */
+            flex-direction: column; /* Adjust layout for navbar + content */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            animation: backgroundAnimation 10s infinite alternate; /* Background animation */
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-color: #000;
+            }
+            100% {
+                background-color: #000408;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap in smaller screens */
+            max-width: 80%;
+            width: 100%;
+            margin-top: 100px; /* Increased margin to avoid nav overlap */
+            padding: 20px; /* Padding around the content */
+        }
+
+        .planet {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-width: 300px; /* Minimum width for better responsiveness */
+        }
+
+        .planet img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%; /* Makes it look round like a planet */
+            transition: transform 0.3s ease; /* Animation for scaling */
+        }
+
+        .planet img:hover {
+            transform: scale(1.1); /* Zoom in effect on hover */
+        }
+
+        .text {
+            flex: 1;
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Ensure text and button are in a column */
+            font-size: 2em; /* Responsive font size */
+            min-width: 300px; /* Minimum width for better responsiveness */
+        }
+
+        .text h1 {
+            margin-bottom: 20px; /* Add space between the heading and button */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            background-color: #0C1016; /* Background color */
+            padding: 15px; /* Padding around the navbar */
+            position: fixed; /* Stick to the top */
+            top: 0;
+            width: 100%; /* Full width */
+            z-index: 1000; /* Make sure it stays on top of other elements */
+        }
+
+        .nav-links {
+            list-style-type: none; /* Remove bullet points */
+            display: flex; /* Use flexbox to center items */
+            justify-content: center; /* Center the items */
+            flex-wrap: wrap; /* Allow items to wrap in smaller screens */
+        }
+
+        .nav-links li {
+            margin: 0 20px; /* Space between nav items */
+        }
+
+        .nav-links a {
+            color: white; /* Text color */
+            text-decoration: none; /* Remove underline */
+            padding: 10px 15px; /* Padding around links */
+            transition: background 0.3s, transform 0.3s; /* Transition for hover effect */
+        }
+
+        .nav-links a:hover {
+            background-color: white; /* Background color on hover */
+            color: black;
+            border-radius: 50px;
+            border-color: #0C1016;
+            border-style: solid;
+            transform: scale(1.1); /* Slightly grow the link */
+        }
+
+        .start {
+            background-color: rgb(13, 170, 205);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em; /* Responsive font size */
+            border-radius: 50px;
+            padding: 10px 20px; /* Adjust padding to make the button bigger */
+            margin-top: 20px; /* Add space between the text and the button */
+            margin-bottom: 30px; /* Added margin-bottom to create space below the button */
+            cursor: pointer; /* Add a pointer cursor on hover */
+            border: none; /* Remove default button border */
+            transition: transform 0.3s ease; /* Animation for scaling */
+        }
+
+        .start:hover {
+            background-color: rgb(18, 150, 180); /* Add a hover effect for the button */
+            transform: scale(1.05); /* Grow button slightly on hover */
+        }
+
+        .data {
+            background-color: rgb(204, 220, 227);
+            color: #0C1016;
+            padding: 20px; /* Add padding for data section */
+            border-radius: 15px; /* Rounded corners for the data section */
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 1s forwards 1s; /* Fade in effect */
+            width: 80%; /* Width of the data section */
+            max-width: 800px; /* Maximum width */
+            margin-top: 20px; /* Space above the data section */
+            border: 2px solid #0C1016; /* Add a border */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Fade in effect */
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .text {
+                font-size: 1.2em; /* Smaller font size for mobile */
+                padding-left: 10px; /* Reduce padding for mobile */
+            }
+
+            .navbar {
+                padding: 10px; /* Reduce navbar padding on smaller screens */
+            }
+
+            .nav-links li {
+                margin: 0 10px; /* Reduce margin for nav items */
+            }
+
+            .start {
+                font-size: 1em; /* Smaller font size for button */
+                padding: 8px 16px; /* Reduce padding for button */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text h1 {
+                font-size: 1.5em; /* Even smaller font size for mobile */
+            }
+
+            #img-1 {
+                height: 400px; /* Adjust image height for smaller screens */
+            }
+        }
+            .data {
+                background-color: rgb(204, 220, 227);
+                color: #0C1016;
+                padding: 20px; /* Add padding for data section */
+                border-radius: 15px; /* Rounded corners for the data section */
+                opacity: 0; /* Initially hidden */
+                animation: fadeIn 1s forwards 1s; /* Fade in effect */
+                width: 80%; /* Width of the data section */
+                max-width: 800px; /* Maximum width */
+                margin: 20px auto; /* Center the data section */
+                border: 2px solid #0C1016; /* Add a border */
+                text-align: center; /* Center align text */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+            }
+
+            .data h1, .data h2 {
+                margin: 10px 0; /* Add margin for spacing */
+                transition: color 0.3s ease; /* Transition for hover effect */
+            }
+
+            .data h1:hover, .data h2:hover {
+                color: rgb(22, 180, 215); /* Change color on hover */
+            }
+
+            .data a {
+                color: rgb(22, 180, 215); /* Link color */
+                transition: color 0.3s ease; /* Transition for link color */
+            }
+
+            .data a:hover {
+                color: rgb(0, 150, 180); /* Change link color on hover */
+                text-decoration: underline; /* Underline on hover */
+            }
+
+            /* Remove bullet points from the list */
+            .data ul {
+                list-style-type: none; /* Remove default bullet points */
+                padding: 0; /* Remove padding */
+                margin: 20px 0; /* Add margin above and below the list */
+            }
+
+            /* Style the list items */
+            .data ul li {
+                display: flex; /* Use flexbox for horizontal alignment */
+                align-items: center; /* Center align items vertically */
+                background-color: rgba(0, 0, 0, 0.1); /* Light background for list items */
+                border-radius: 10px; /* Rounded corners */
+                padding: 10px; /* Padding inside list items */
+                margin: 5px 0; /* Space between list items */
+                transition: background 0.3s ease; /* Transition for hover effect */
+            }
+
+            .data ul li:hover {
+                background-color: rgba(0, 150, 180, 0.2); /* Change background color on hover */
+            }
+
+            /* Style for planet images */
+            .planet-image {
+                width: 40px; /* Width of planet images */
+                height: 40px; /* Height of planet images */
+                margin-right: 10px; /* Space between image and text */
+                border-radius: 50%; /* Make images round */
+                object-fit: cover; /* Crop image to fit */
+            }
+
+            .btn-env{
+
+                color: black;
+                font-size: 25px;
+            }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="data.html">Data</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="satellite.html">Satellite</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Planet Image -->
+        <div class="planet">
+            <img id="img-1" src="img-1.png" alt="Planet Image">
+        </div>
+
+        <!-- Text Content -->
+        <div class="text">
+            <h1>Get Ready to get Deep into Exoplanet Exploration</h1>
+            <button class="start"><a href="learn.html">Start Journey</a></button>
+        </div>
+    </div>
+
+    <div class="data">
+        <h1><u>Overview</u></h1>
+        <br>
+        <h2>Goals of NASA’s Exoplanet Exploration Program</h2>
+        <p>
+            NASA’s Exoplanet Exploration Program aims to discover and characterize exoplanets (planets outside our solar system) with the following goals:
+        </p>
+        <ul>
+            <li>
+                <img class="planet-image" src="https://cdn.pixabay.com/photo/2024/05/06/03/36/planet-8742339_640.png" alt="Planet 1">
+                Identify the locations and characteristics of exoplanets around stars.
+            </li>
+            <li>
+                <img class="planet-image" src="https://cdn.pixabay.com/photo/2014/12/27/17/36/sun-581299_640.jpg" alt="Planet 2">
+                Determine if exoplanets can support life by assessing their atmospheres and environmental conditions.
+            </li>
+            <li>
+                <img class="planet-image" src="https://cdn.pixabay.com/photo/2023/09/04/17/04/planet-8233225_640.png" alt="Planet 3">
+                Advance our understanding of planetary systems and how they form and evolve.
+            </li>
+            <li>
+                <img class="planet-image" src="https://cdn.pixabay.com/photo/2020/11/22/14/58/earth-5766860_640.png" alt="Planet 4">
+                Investigate the potential for resources that could support human exploration in the future.
+            </li>
+        </ul>
+        
+        <h1><u>Exoplanets</u></h1>
+        <ul>
+            <li>
+                <img class="planet-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ccEYqm7H5UJTO6bj7wRuQhZimP_F8KpHXA&s" alt="51 Pegasi b">
+                <h1><a href="https://science.nasa.gov/exoplanet-catalog/51-pegasi-b/">51 Pegasi b</a></h1>
+            </li>
+            <p>51 Pegasi b, discovered in 1995, was the first exoplanet found orbiting a sun-like star. It is a gas giant with a temperature around 1000°C, located approximately 50 light-years away in the constellation Pegasus.</p>
+            
+            <li>
+                <img class="planet-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNQonmZKqBuOYu6Kd07-wAxW44en0JasC9qA&s" alt="HD 209458 b">
+                <h1><a href="https://science.nasa.gov/exoplanet-catalog/hd-209458-b/">HD 209458 b</a></h1>
+            </li>
+            <p>HD 209458 b is a well-studied exoplanet that orbits a star similar to our sun. It is known for its unique characteristics and is a key target for studying atmospheres of exoplanets.</p>
+        </ul>
+    
+        <h1>Have fun by taking a look at the amazing website Eyes on Exoplanets</h1><br>
+        <div class="btn-env">
+            <center>
+                <button class="start">
+                    <a href="https://eyes.nasa.gov/apps/exo/#/" target="_blank" style="text-decoration: none; color: white;">
+                        Visit Website
+                    </a>
+                </button>
+            </center>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

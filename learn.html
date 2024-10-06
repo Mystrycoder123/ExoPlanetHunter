@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoPlanetHunter</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar (Route Map) */
+        #sidebar {
+            width: 25%;
+            background-color: #2f3d4a;
+            padding: 20px;
+            color: white;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        #sidebar h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #f4f4f9;
+        }
+
+        #sidebar ul {
+            list-style: none;
+        }
+
+        #sidebar ul li {
+            margin: 15px 0;
+        }
+
+        #sidebar ul li a {
+            text-decoration: none;
+            color: #f4f4f9;
+            font-size: 1.2rem;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #007bff;
+        }
+
+        /* Content Section */
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Video Section */
+        #video-container {
+            width: 100%;
+        }
+
+        #chapter-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        #video-container video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            background-color: #000;
+            outline: none;
+        }
+
+        /* Quiz Section */
+        #quiz-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #quiz-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        #questions p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        #quiz-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #quiz-container button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        #badge {
+            margin-top: 20px;
+        }
+
+        #badge img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            background-color: #0C1016; /* Background color */
+            padding: 15px; /* Padding around the navbar */
+            position: fixed; /* Stick to the top */
+            top: 0;
+            width: 100%; /* Full width */
+            z-index: 1000; /* Make sure it stays on top of other elements */
+        }
+
+        .nav-links {
+            list-style-type: none; /* Remove bullet points */
+            display: flex; /* Use flexbox to center items */
+            justify-content: center; /* Center the items */
+            flex-wrap: wrap; /* Allow items to wrap in smaller screens */
+        }
+
+        .nav-links li {
+            margin: 0 20px; /* Space between nav items */
+        }
+
+        .nav-links a {
+            color: white; /* Text color */
+            text-decoration: none; /* Remove underline */
+            padding: 10px 15px; /* Padding around links */
+            transition: background 0.3s, transform 0.3s; /* Transition for hover effect */
+        }
+
+        .nav-links a:hover {
+            background-color: white; /* Background color on hover */
+            color: black;
+            border-radius: 50px;
+            border-color: #0C1016;
+            border-style: solid;
+            transform: scale(1.1); /* Slightly grow the link */
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#satellites">Satellites</a></li>
+            <li><a href="data.html">Data</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div id="sidebar">
+            <h2>Chapters</h2>
+            <ul>
+                <li><a onclick="loadChapter(1)">Chapter 1: Introduction</a></li>
+                <li><a onclick="loadChapter(2)">Chapter 2: Basics</a></li>
+                <li><a onclick="loadChapter(3)">Chapter 3: Intermediate</a></li>
+                <li><a onclick="loadChapter(4)">Chapter 4: Advanced</a></li>
+                <li><a onclick="loadChapter(5)">Chapter 5: Conclusion</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content">
+            <!-- Video Player -->
+            <div id="video-container">
+                <h2 id="chapter-title">Chapter 1: Introduction</h2>
+                <video id="myVideo" controls>
+                    <source id="videoSource" src="1,Discovering Exoplanets_ The Journey Beyound.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Quiz and Badge Section -->
+            <div id="quiz-container">
+                <h2>Quiz Time!</h2>
+                <div id="questions"></div>
+                <div id="result"></div>
+                <div id="badge" style="display: none;">
+                    <p>Congratulations! You've earned a badge for completing this chapter.</p>
+                    <img src="badge.png" alt="Badge" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var video = document.getElementById("myVideo");
+        var videoSource = document.getElementById("videoSource");
+        var quizContainer = document.getElementById("quiz-container");
+        var result = document.getElementById("result");
+        var badge = document.getElementById("badge");
+        var chapterTitle = document.getElementById("chapter-title");
+        var questionsContainer = document.getElementById("questions");
+
+        // Chapter data
+        var chapters = [
+            { title: "Chapter 1: Discovering Exoplanets_ The Journey Beyound ", video: "1,Discovering Exoplanets_ The Journey Beyound.mp4", quiz: [{ q: "Which year they invented the exoplanet?", a: "1992", options: ["1992", "They havent invented none"] }, { q: "Which method they used to find the exo planet?", a: "Transist & Wobble method", options: ["Transist & Wobble method", "There is no method"] }] },
+            { title: "Chapter 2: Exploring Space with NASA's Kepler Mission.mp4", video: "2,Exploring Space with NASA's Kepler Mission.mp4", quiz: [{ q: "What was sent to space to detect exoplanet?", a: "Kepler", options: ["Kepler", "None"] }, { q: "Did Kepler found any planets", a: "Yes", options: ["Yes", "No"] }] },
+
+            { title: "Chapter 3: Discovering Super-Earths, Mini-Neptunes,.mp4", video: "3,Discovering Super-Earths, Mini-Neptunes,.mp4", quiz: [{ q: "What defines a super-Earth?", a: " mass greater than Earth option", options: [" mass greater than Earth option", "They are too bright to observe directly"] }] },
+            { title: "Chapter 4: Discovering Exomoons", video: "4,Discovering Exomoons.mp4", quiz: [{ q: " Which of the following describes an exomoon?", a: " A moon orbiting a planet outside our solar system", options: [" A moon orbiting a planet outside our solar system", "A moon that orbits Earth from another galaxy"] }, { q: "What is the main challenge in detecting exomoons?", a: "Their small size compared to exoplanets", options: ["Their small size compared to exoplanets", "They are too bright to observe directly"] }] },
+            { title: "Chapter 5: DiscoveringThe Next Frontier", video: "5,DiscoveringThe Next Frontier.mp4", quiz: [{ q: "Exomoons are easy to spot!   true false ?", a: "True", options: ["True", "False"] }, { q: "Why are exomoons considered the next frontier in space exploration?", a: "They may host conditions suitable for life", options: ["They may host conditions suitable for life", "hey are easier to detect than exoplanets"] }] },
+        ];
+
+        function loadChapter(index) {
+            // Set video source and chapter title
+            videoSource.src = chapters[index - 1].video;
+            chapterTitle.textContent = chapters[index - 1].title;
+            video.load();
+
+            // Reset quiz and badge
+            quizContainer.style.display = "none";
+            badge.style.display = "none";
+            result.textContent = "";
+
+            // Load quiz for the chapter
+            loadQuiz(index - 1);
+        }
+
+        function loadQuiz(chapterIndex) {
+            var quiz = chapters[chapterIndex].quiz;
+            questionsContainer.innerHTML = ""; // Clear previous quiz
+
+            quiz.forEach(function(item, i) {
+                var questionElem = document.createElement("p");
+                questionElem.textContent = (i + 1) + ". " + item.q;
+                questionsContainer.appendChild(questionElem);
+
+                item.options.forEach(function(option) {
+                    var button = document.createElement("button");
+                    button.textContent = option;
+                    button.onclick = function() {
+                        answer(option === item.a);
+                    };
+                    questionsContainer.appendChild(button);
+                });
+            });
+        }
+
+        // Show quiz when video ends
+        video.onended = function() {
+            quizContainer.style.display = "block";
+        };
+
+        // Handle quiz answers and award badge
+        function answer(isCorrect) {
+            if (isCorrect) {
+                result.textContent = "Correct!";
+                result.style.color = "green";
+                badge.style.display = "block";
+            } else {
+                result.textContent = "Wrong answer. Try again!";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

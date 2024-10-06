@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoPlanetHunter</title>
+    
+    <link rel="icon" type="image/x-icon" href="logo .png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding-bottom: 100px; /* Padding to ensure the footer isn't hidden */
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background-color: #0C1016;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: white;
+            color: black;
+            border-radius: 50px;
+            border-color: #0C1016;
+            border-style: solid;
+            transform: scale(1.1);
+        }
+
+        header {
+            margin-top: 130px; /* Add margin to avoid overlap with navbar */
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #0C1016;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            margin-top: 50px;
+            border: 2px solid #0C1016;
+            border-radius: 50px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0C1016;
+            color: white;
+            position: relative; /* Ensure footer stays below the charts */
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                font-size: 2em;
+            }
+
+            .chart-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            canvas {
+                margin-top: 30px;
+                padding: 10px;
+            }
+
+            .nav-links li {
+                margin: 0 10px;
+            }
+
+            .nav-links a {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.5em;
+            }
+
+            .chart-container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            canvas {
+                margin-top: 20px;
+                padding: 5px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#data-chart">Data Charts</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="satellite.html">Satellite</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="herder">ExoPlanetHunter Data Visuals</header>
+
+    <!-- Chart Container Section -->
+    <div class="chart-container" id="data-chart">
+        <h2 style="text-align:center">Data Charts</h2>
+        <canvas id="pieChart"></canvas>
+        <canvas id="barChart"></canvas>
+        <canvas id="lineChart"></canvas>
+        <canvas id="radarChart"></canvas>
+        <canvas id="doughnutChart"></canvas>
+    </div>
+
+
+    <!-- Script for Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Earth-like', 'Gas Giants', 'Ice Giants', 'Super-Earths', 'Neptune-like'],
+                datasets: [{
+                    label: 'Exoplanet Types',
+                    data: [20, 35, 25, 10, 10],
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff']
+                }]
+            }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter'],
+                datasets: [{
+                    label: 'Planet Temperatures (°C)',
+                    data: [167, 464, 15, -65, -145],
+                    backgroundColor: '#36a2eb'
+                }]
+            }
+        });
+
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Discovery of Exoplanets',
+                    data: [10, 30, 50, 80, 60, 100],
+                    borderColor: '#ff6384',
+                    fill: false
+                }]
+            }
+        });
+
+        // Radar Chart
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Atmosphere', 'Temperature', 'Distance', 'Mass', 'Radius'],
+                datasets: [{
+                    label: 'Planet A',
+                    data: [5, 4, 3, 2, 1],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: '#ff6384'
+                }]
+            }
+        });
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        const doughnutChart = new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Confirmed Exoplanets', 'Unconfirmed Exoplanets', 'Candidates'],
+                datasets: [{
+                    label: 'Exoplanet Status',
+                    data: [75, 15, 10],
+                    backgroundColor: ['#4bc0c0', '#ffce56', '#9966ff']
+                }]
+            }
+        });
+
+    </script>
+</body>
+</html>
